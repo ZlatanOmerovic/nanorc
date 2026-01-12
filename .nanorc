@@ -1,0 +1,94 @@
+# ==============================================================================
+# Nano Configuration File (~/.nanorc)
+# ==============================================================================
+# A well-configured nano setup for software development with sensible defaults,
+# useful features, and custom color scheme.
+#
+# Author: zlome
+# Repository: [Your GitHub URL]
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# BASIC EDITOR SETTINGS
+# ------------------------------------------------------------------------------
+set linenumbers      # Show line numbers on the left side
+set autoindent       # Automatically indent new lines to match previous line
+set tabsize 4        # Set tab width to 4 spaces
+set tabstospaces     # Convert tabs to spaces (important for consistent code)
+set softwrap         # Wrap long lines visually (doesn't insert newlines)
+set atblanks         # When softwrapping, break lines at whitespace
+
+# ------------------------------------------------------------------------------
+# INPUT & NAVIGATION
+# ------------------------------------------------------------------------------
+set mouse            # Enable mouse support for clicking and selecting
+set smarthome        # Home key goes to start of text first, then line start
+set wordbounds       # Detect word boundaries more intelligently
+set afterends        # Ctrl+Right stops at word ends instead of beginnings
+
+# ------------------------------------------------------------------------------
+# CUTTING & EDITING BEHAVIOR
+# ------------------------------------------------------------------------------
+set zap              # Let Ctrl+K cut/delete entire lines easily
+set cutfromcursor    # Make Ctrl+K cut from cursor to end of line (not whole line)
+set trimblanks       # Trim trailing whitespace when hard-wrapping lines
+
+# ------------------------------------------------------------------------------
+# FILE HANDLING & BACKUPS
+# ------------------------------------------------------------------------------
+set backup           # Create backup files when saving
+set backupdir "~/.nano/backups"  # Store backup files in dedicated directory
+set historylog       # Remember search/replace strings across sessions
+set locking          # Use vim-style lock files to prevent concurrent edits
+set nonewlines       # Don't add newline at end of file if there isn't one
+
+# ------------------------------------------------------------------------------
+# SEARCH & REPLACE DEFAULTS
+# ------------------------------------------------------------------------------
+set casesensitive    # Make searches case-sensitive by default (toggle with M-C)
+set regexp           # Enable regular expressions in searches by default (toggle with M-R)
+
+# ------------------------------------------------------------------------------
+# VISUAL & UI SETTINGS
+# ------------------------------------------------------------------------------
+set constantshow     # Always display cursor position (line, col, %)
+set indicator        # Show scroll position indicator on right side
+set matchbrackets "(<[{)>]}"  # Highlight matching brackets and parentheses
+set boldtext         # Use bold text instead of reverse video
+set quickblank       # Status bar messages disappear after 1 keystroke
+set stateflags       # Show state indicators (I/M/R) in title bar
+set whitespace "»·"  # Show tabs as » and spaces as · (helpful for debugging)
+# set nohelp         # Hide help lines at bottom for more screen space (uncomment if desired)
+
+# ------------------------------------------------------------------------------
+# OPTIONAL SETTINGS (commented out by default)
+# ------------------------------------------------------------------------------
+# set rebinddelete   # Fix Backspace/Delete key confusion (uncomment if needed)
+
+# ------------------------------------------------------------------------------
+# COLOR SCHEME
+# ------------------------------------------------------------------------------
+# Customize nano's interface colors for better visibility
+set titlecolor white,magenta          # Title bar (filename, position)
+set statuscolor brightwhite,gray      # Status bar (messages)
+set errorcolor brightwhite,red        # Error messages
+set selectedcolor brightwhite,magenta # Selected/highlighted text
+set numbercolor cyan                  # Line numbers
+set keycolor cyan                     # Keyboard shortcuts in help
+set functioncolor gray                # Function descriptions in help
+
+# ------------------------------------------------------------------------------
+# SYNTAX HIGHLIGHTING
+# ------------------------------------------------------------------------------
+# Include all available syntax highlighting definitions
+# This enables color coding for various programming languages and file types
+include /usr/share/nano/*.nanorc
+
+# ==============================================================================
+# NOTES
+# ==============================================================================
+# - Create backup directory: mkdir -p ~/.nano/backups
+# - Tested with GNU nano version 7.2
+# - Press Ctrl+G in nano to see all available commands
+# - Press M-X (Alt+X) to enable/disable features on the fly
+# ==============================================================================
