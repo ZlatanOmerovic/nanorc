@@ -1,18 +1,10 @@
 # ==============================================================================
-# Nano Configuration File (~/.nanorc)
+# Nano Development Configuration
 # ==============================================================================
-# A well-configured nano setup for software development with sensible defaults,
-# useful features, and custom color scheme.
-#
-# This is the "development" template. See templates/ for alternatives:
-#   minimal.nanorc   — Lightweight essentials only
-#   development.nanorc — Full dev setup (this file)
-#   writing.nanorc   — Prose and markdown focus
-#   beginner.nanorc  — Safe defaults with detailed comments
-#   advanced.nanorc  — Power-user setup, max screen space
+# Full-featured nano setup optimized for software development. Includes smart
+# navigation, file safety, regex search, and a custom color scheme.
 #
 # Compatible with: GNU nano 5.x, 6.x, 7.x, 8.x
-# Author: Zlatan Omerovic <ascent.ba@gmail.com>
 # Repository: https://github.com/ZlatanOmerovic/nanorc
 # ==============================================================================
 

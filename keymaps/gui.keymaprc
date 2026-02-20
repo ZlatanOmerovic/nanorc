@@ -1,0 +1,185 @@
+# ==============================================================================
+# Nano GUI/Desktop Keymap
+# ==============================================================================
+# Familiar keyboard shortcuts from desktop editors and GUI applications
+# (VS Code, Sublime, gedit, Notepad++, TextEdit, etc.)
+#
+# Works on Linux and macOS terminals. In most terminals, Ctrl maps to ^.
+# On macOS, use Ctrl (not Cmd) since terminals send Ctrl sequences.
+#
+# Include this file in your .nanorc:
+#   include /path/to/keymaps/gui.keymaprc
+#
+# Repository: https://github.com/ZlatanOmerovic/nanorc
+# ==============================================================================
+
+# --- Unbind conflicting defaults first ---
+
+# ^C is "location" by default — we need it for copy
+unbind ^C main
+# ^V is "pagedown" by default — we need it for paste
+unbind ^V main
+# ^Q is "wherewas" by default — we need it for quit
+unbind ^Q main
+# ^F is "right" by default — we need it for find/search
+unbind ^F main
+# ^H is "backspace" by default — we need it for replace
+unbind ^H main
+# ^Z is "suspend" by default — we need it for undo
+unbind ^Z main
+# ^Y is "pageup" by default — we need it for redo
+unbind ^Y main
+# ^S is "savefile" by default — rebinding explicitly for clarity
+unbind ^S main
+# ^X is "exit" by default — we need it for cut
+unbind ^X main
+# ^A is "home" by default — we need it for select/mark
+unbind ^A main
+# ^G is "help" by default — we need it for goto line
+unbind ^G main
+# ^W is "whereis" by default — we need it for close/exit
+unbind ^W main
+# ^D is "delete" by default — we need it for discard buffer
+unbind ^D main
+# ^T is "execute" by default — we need it for spell check
+unbind ^T main
+
+# ==============================================================================
+# GUI-STYLE KEY BINDINGS
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# FILE OPERATIONS
+# ------------------------------------------------------------------------------
+bind ^S savefile main        # Ctrl+S  — Save file
+bind ^W exit main            # Ctrl+W  — Close/exit (like closing a tab)
+bind ^Q exit main            # Ctrl+Q  — Quit
+bind ^O insert main          # Ctrl+O  — Open/insert file
+bind ^D discardbuffer main   # Ctrl+D  — Discard buffer (close without saving)
+
+# ------------------------------------------------------------------------------
+# CLIPBOARD (CUT / COPY / PASTE)
+# ------------------------------------------------------------------------------
+bind ^C copy main            # Ctrl+C  — Copy line or selection
+bind ^X cut main             # Ctrl+X  — Cut line or selection
+bind ^V paste main           # Ctrl+V  — Paste
+bind M-Del zap main          # Alt+Del — Delete selection (no copy to clipboard)
+
+# ------------------------------------------------------------------------------
+# UNDO & REDO
+# ------------------------------------------------------------------------------
+bind ^Z undo main            # Ctrl+Z  — Undo
+bind ^Y redo main            # Ctrl+Y  — Redo
+
+# ------------------------------------------------------------------------------
+# SEARCH & REPLACE
+# ------------------------------------------------------------------------------
+bind ^F whereis main         # Ctrl+F  — Find/search
+bind ^H replace main         # Ctrl+H  — Find and replace
+bind F3 findnext main        # F3      — Find next occurrence
+bind Sh-F3 findprevious main # Shift+F3 — Find previous occurrence
+bind ^G gotoline main        # Ctrl+G  — Go to line number
+bind M-] findbracket main    # Alt+]   — Find matching bracket
+
+# ------------------------------------------------------------------------------
+# SELECTION
+# ------------------------------------------------------------------------------
+bind ^A mark main            # Ctrl+A  — Start/toggle selection (mark)
+# Note: nano does not support "select all" as a single action.
+# Press Ctrl+A to start marking, then Alt+/ to go to end of file.
+
+# ------------------------------------------------------------------------------
+# NAVIGATION
+# ------------------------------------------------------------------------------
+bind ^Home firstline main    # Ctrl+Home   — Go to beginning of file
+bind ^End lastline main      # Ctrl+End    — Go to end of file
+bind M-Up prevblock main     # Alt+Up      — Jump to previous text block
+bind M-Down nextblock main   # Alt+Down    — Jump to next text block
+bind Sh-M-T toprow main      # Shift+Alt+T — Jump to top row of viewport
+bind Sh-M-B bottomrow main   # Shift+Alt+B — Jump to bottom row of viewport
+
+# ------------------------------------------------------------------------------
+# SCROLLING (without moving cursor)
+# ------------------------------------------------------------------------------
+bind M-Minus scrollup main   # Alt+-    — Scroll up one line
+bind M-Plus scrolldown main  # Alt+=    — Scroll down one line
+bind M-. center main         # Alt+.    — Center current line on screen
+
+# ------------------------------------------------------------------------------
+# EDITING EXTRAS
+# ------------------------------------------------------------------------------
+bind M-/ comment main        # Alt+/    — Toggle comment on line
+bind ^] complete main        # Ctrl+]   — Word auto-completion
+bind M-} indent main         # Alt+}    — Indent selected lines
+bind M-{ unindent main       # Alt+{    — Unindent selected lines
+bind ^J justify main         # Ctrl+J   — Justify paragraph
+bind M-J fulljustify main    # Alt+J    — Justify entire file
+
+# ------------------------------------------------------------------------------
+# TOOLS
+# ------------------------------------------------------------------------------
+bind ^T spell main           # Ctrl+T   — Spell check
+bind F5 execute main         # F5       — Execute command
+bind M-D wordcount main      # Alt+D    — Word count
+bind M-B linter main         # Alt+B    — Run linter
+bind M-F formatter main      # Alt+F    — Run formatter
+
+# ------------------------------------------------------------------------------
+# BUFFERS (when multibuffer is enabled)
+# ------------------------------------------------------------------------------
+bind M-Left prevbuf main     # Alt+Left  — Previous buffer
+bind M-Right nextbuf main    # Alt+Right — Next buffer
+bind M-< firstfile main      # Alt+<     — First buffer
+bind M-> lastfile main       # Alt+>     — Last buffer
+
+# ------------------------------------------------------------------------------
+# ANCHORS (bookmarks)
+# ------------------------------------------------------------------------------
+bind M-Ins anchor main       # Alt+Ins   — Toggle anchor on current line
+bind M-PgUp prevanchor main  # Alt+PgUp  — Jump to previous anchor
+bind M-PgDn nextanchor main  # Alt+PgDn  — Jump to next anchor
+
+# ------------------------------------------------------------------------------
+# MACROS
+# ------------------------------------------------------------------------------
+bind F9 recordmacro main     # F9       — Start/stop recording macro
+bind F10 runmacro main       # F10      — Run recorded macro
+
+# ------------------------------------------------------------------------------
+# DISPLAY TOGGLES
+# ------------------------------------------------------------------------------
+bind M-N linenumbers main    # Alt+N    — Toggle line numbers
+bind M-L whitespacedisplay main  # Alt+L — Toggle whitespace display
+bind M-W softwrap main       # Alt+W    — Toggle soft wrapping
+bind M-Z zero main           # Alt+Z    — Toggle zero mode (hide all bars)
+bind M-X nohelp main         # Alt+X    — Toggle help lines
+bind M-O nosyntax main       # Alt+O    — Toggle syntax highlighting
+
+# ------------------------------------------------------------------------------
+# HELP (remapped since ^G is now goto line)
+# ------------------------------------------------------------------------------
+bind F1 help main            # F1       — Show help screen
+
+# ------------------------------------------------------------------------------
+# WRITE-OUT MENU BINDINGS
+# ------------------------------------------------------------------------------
+bind M-D dosformat writeout  # Alt+D    — Toggle DOS format
+bind M-M macformat writeout  # Alt+M    — Toggle Mac format
+bind M-A append writeout     # Alt+A    — Toggle append mode
+bind M-P prepend writeout    # Alt+P    — Toggle prepend mode
+bind M-B backup writeout     # Alt+B    — Toggle backup on save
+
+# ------------------------------------------------------------------------------
+# SEARCH MENU BINDINGS
+# ------------------------------------------------------------------------------
+bind M-C casesens search     # Alt+C    — Toggle case sensitivity
+bind M-R regexp search        # Alt+R    — Toggle regex
+bind M-B backwards search    # Alt+B    — Toggle search direction
+bind M-P older search        # Alt+P    — Previous search history
+bind M-N newer search        # Alt+N    — Next search history
+
+# ------------------------------------------------------------------------------
+# FILE BROWSER BINDINGS
+# ------------------------------------------------------------------------------
+bind ^G gotodir browser      # Ctrl+G   — Go to directory
+bind ^W whereisfile browser  # Ctrl+W   — Search for file

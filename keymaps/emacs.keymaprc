@@ -1,0 +1,262 @@
+# ==============================================================================
+# Nano Emacs Keymap
+# ==============================================================================
+# Emacs-compatible keybindings for nano. Covers the subset of Emacs bindings
+# that nano can actually implement (single Ctrl/Alt combos only — no chords
+# like C-x C-s since nano doesn't support multi-key sequences).
+#
+# Many Emacs bindings already match nano's defaults. This file makes the
+# overlap explicit, fills in gaps, and resolves conflicts.
+#
+# Include this file in your .nanorc:
+#   include /path/to/keymaps/emacs.keymaprc
+#
+# Repository: https://github.com/ZlatanOmerovic/nanorc
+# ==============================================================================
+
+# --- Unbind conflicting defaults ---
+
+# ^S is "savefile" by default — we need it for forward search (isearch)
+unbind ^S main
+# ^Q is "wherewas" by default — rebinding for consistency
+unbind ^Q main
+# ^W is "whereis" by default — we need it for cut region
+unbind ^W main
+# ^C is "location" by default — we need it for cancel/prefix
+unbind ^C main
+# ^T is "execute" by default — we need it for transpose/tools
+unbind ^T main
+# ^U is "paste" by default — we need it for universal argument context
+unbind ^U main
+
+# ==============================================================================
+# EMACS-STYLE KEY BINDINGS
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# MOVEMENT — Character
+# Emacs: C-f forward, C-b backward, C-n next line, C-p previous line
+# (These are already nano defaults, but listed explicitly for clarity)
+# ------------------------------------------------------------------------------
+bind ^F right main           # C-f  — Forward one character
+bind ^B left main            # C-b  — Backward one character
+bind ^N down main            # C-n  — Next line
+bind ^P up main              # C-p  — Previous line
+
+# ------------------------------------------------------------------------------
+# MOVEMENT — Line
+# Emacs: C-a beginning of line, C-e end of line
+# (Already nano defaults)
+# ------------------------------------------------------------------------------
+bind ^A home main            # C-a  — Beginning of line
+bind ^E end main             # C-e  — End of line
+
+# ------------------------------------------------------------------------------
+# MOVEMENT — Word
+# Emacs: M-f forward word, M-b backward word
+# ------------------------------------------------------------------------------
+bind M-F nextword main       # M-f  — Forward one word
+bind M-B prevword main       # M-b  — Backward one word
+
+# ------------------------------------------------------------------------------
+# MOVEMENT — Paragraph / Buffer
+# Emacs: M-{ backward paragraph, M-} forward paragraph
+#         M-< beginning of buffer, M-> end of buffer
+# ------------------------------------------------------------------------------
+bind M-{ beginpara main      # M-{  — Beginning of paragraph
+bind M-} endpara main        # M-}  — End of paragraph
+bind M-< firstline main      # M-<  — Beginning of buffer
+bind M-> lastline main       # M->  — End of buffer
+
+# ------------------------------------------------------------------------------
+# MOVEMENT — Block
+# Emacs: C-M-a / C-M-e for function boundaries (closest: block navigation)
+# ------------------------------------------------------------------------------
+bind M-Up prevblock main     # M-Up   — Previous block of text
+bind M-Down nextblock main   # M-Down — Next block of text
+
+# ------------------------------------------------------------------------------
+# MOVEMENT — Scrolling
+# Emacs: C-v scroll down, M-v scroll up, C-l recenter
+# (C-v is already nano's pagedown default)
+# ------------------------------------------------------------------------------
+bind ^V pagedown main        # C-v  — Scroll down one page
+bind M-V pageup main         # M-v  — Scroll up one page
+bind ^L center main          # C-l  — Recenter screen (closest to emacs C-l)
+bind M-Minus scrollup main   # M--  — Scroll up one line
+bind M-Plus scrolldown main  # M-+  — Scroll down one line
+bind Sh-M-T toprow main      # Shift+M-t — Jump to top of viewport
+bind Sh-M-B bottomrow main   # Shift+M-b — Jump to bottom of viewport
+
+# ------------------------------------------------------------------------------
+# DELETION
+# Emacs: C-d delete char, C-k kill to end of line, M-d kill word forward
+#         M-DEL kill word backward
+# ------------------------------------------------------------------------------
+bind ^D delete main          # C-d    — Delete character under cursor
+bind ^K cut main             # C-k    — Kill to end of line (with cutfromcursor)
+bind M-D chopwordright main  # M-d    — Kill word forward
+bind M-Bsp chopwordleft main # M-DEL  — Kill word backward
+
+# ------------------------------------------------------------------------------
+# KILL & YANK (CUT & PASTE)
+# Emacs: C-w kill region, M-w copy region, C-y yank
+# ------------------------------------------------------------------------------
+bind ^W cut main             # C-w  — Kill (cut) region
+bind M-W copy main           # M-w  — Copy region (without cutting)
+bind ^Y paste main           # C-y  — Yank (paste)
+bind M-Del zap main          # M-Del — Delete without copying to kill ring
+bind ^U cutrestoffile main   # C-u  — Cut from cursor to end of file
+
+# ------------------------------------------------------------------------------
+# MARK / SELECTION
+# Emacs: C-Space set mark, C-x C-x exchange point and mark
+# (nano uses a toggle mark — closest equivalent)
+# ------------------------------------------------------------------------------
+bind ^Space mark main        # C-SPC — Set/toggle mark
+
+# ------------------------------------------------------------------------------
+# SEARCH & REPLACE
+# Emacs: C-s isearch forward, C-r isearch backward, M-% query replace
+# (nano doesn't have incremental search, using closest equivalents)
+# ------------------------------------------------------------------------------
+bind ^S whereis main         # C-s  — Search forward
+bind ^R wherewas main        # C-r  — Search backward
+bind M-5 replace main        # M-%  — Query replace (M-% = M-Shift-5)
+bind M-Q findprevious main   # M-q  — Find previous (custom)
+bind M-S findnext main       # M-s  — Find next (custom)
+bind M-] findbracket main    # M-]  — Find matching bracket
+
+# Search menu toggles
+bind M-C casesens search     # Toggle case sensitivity in search
+bind M-R regexp search        # Toggle regular expressions in search
+bind M-B backwards search    # Toggle search direction
+
+# Search history
+bind M-P older search        # Previous search history entry
+bind M-N newer search        # Next search history entry
+
+# ------------------------------------------------------------------------------
+# UNDO
+# Emacs: C-/ undo, C-x u undo (chord not possible, using C-/ only)
+# ------------------------------------------------------------------------------
+bind ^/ undo main            # C-/  — Undo
+bind M-/ redo main           # M-/  — Redo (custom, no direct Emacs equivalent)
+
+# ------------------------------------------------------------------------------
+# FILE OPERATIONS
+# Emacs: C-x C-s save, C-x C-c exit (chords not possible, using alternatives)
+# These are practical compromises since nano can't do multi-key chords.
+# ------------------------------------------------------------------------------
+bind ^O writeout main        # C-o  — Save file (closest to C-x C-s)
+bind ^X exit main            # C-x  — Exit (closest to C-x C-c)
+bind ^T insert main          # C-t  — Open/insert file (closest to C-x C-f)
+
+# Write-out menu toggles
+bind M-D dosformat writeout  # Toggle DOS format
+bind M-M macformat writeout  # Toggle Mac format
+bind M-A append writeout     # Toggle append mode
+bind M-P prepend writeout    # Toggle prepend mode
+bind M-B backup writeout     # Toggle backup on save
+
+# ------------------------------------------------------------------------------
+# TOOLS — Emacs M-x equivalents (via direct bindings)
+# ------------------------------------------------------------------------------
+bind M-G gotoline main       # M-g  — Go to line number
+bind M-= wordcount main      # M-=  — Word count (like emacs count-words)
+bind M-$ spell main          # M-$  — Spell check (like emacs ispell-word)
+bind ^J justify main         # C-j  — Justify paragraph
+bind M-J fulljustify main    # M-j  — Justify entire file
+bind M-; comment main        # M-;  — Toggle comment (like emacs comment-dwim)
+bind ^] complete main        # C-]  — Word completion (like emacs dabbrev)
+bind M-! execute main        # M-!  — Execute command (like emacs shell-command)
+bind M-L linter main         # M-l  — Run linter
+bind M-: formatter main      # M-:  — Run formatter
+
+# ------------------------------------------------------------------------------
+# INDENT / UNINDENT
+# Emacs: C-c > indent, C-c < unindent (chords not possible, using Alt)
+# ------------------------------------------------------------------------------
+bind M-. indent main         # M-.  — Indent selected lines
+bind M-, unindent main       # M-,  — Unindent selected lines
+
+# ------------------------------------------------------------------------------
+# BUFFERS
+# Emacs: C-x b switch buffer, C-x k kill buffer
+# ------------------------------------------------------------------------------
+bind M-Left prevbuf main     # Switch to previous buffer
+bind M-Right nextbuf main    # Switch to next buffer
+bind M-Home firstfile main   # Switch to first buffer
+bind M-End lastfile main     # Switch to last buffer
+bind ^C discardbuffer main   # C-c  — Close/discard buffer (like emacs kill-buffer)
+
+# ------------------------------------------------------------------------------
+# ANCHORS (like emacs bookmarks)
+# ------------------------------------------------------------------------------
+bind M-Ins anchor main       # Set/remove anchor at current line
+bind M-PgUp prevanchor main  # Jump to previous anchor
+bind M-PgDn nextanchor main  # Jump to next anchor
+
+# ------------------------------------------------------------------------------
+# MACROS
+# Emacs: C-x ( start, C-x ) stop, C-x e run (chords not possible)
+# ------------------------------------------------------------------------------
+bind F3 recordmacro main     # F3   — Start/stop recording macro
+bind F4 runmacro main        # F4   — Run recorded macro
+
+# ------------------------------------------------------------------------------
+# DISPLAY TOGGLES
+# ------------------------------------------------------------------------------
+bind M-N linenumbers main    # M-n  — Toggle line numbers
+bind M-P whitespacedisplay main  # M-p — Toggle whitespace display
+bind M-Y softwrap main       # M-y  — Toggle soft wrapping
+bind M-I autoindent main     # M-i  — Toggle auto-indent
+bind M-K constantshow main   # M-k  — Toggle constant show
+bind M-M mouse main          # M-m  — Toggle mouse
+bind M-H smarthome main      # M-h  — Toggle smart home
+bind M-X nohelp main         # M-x  — Toggle help lines
+bind M-O nosyntax main       # M-o  — Toggle syntax highlighting
+bind M-Z zero main           # M-z  — Toggle zero mode (hide all bars)
+bind M-0 tabstospaces main   # M-0  — Toggle tabs-to-spaces
+bind M-W breaklonglines main # M-w  — Toggle hard line wrapping
+
+# ------------------------------------------------------------------------------
+# HELP
+# (Remapped since C-g is now cancel)
+# ------------------------------------------------------------------------------
+bind F1 help main            # F1   — Show help screen
+bind ^G cancel all           # C-g  — Cancel current operation (Emacs standard)
+
+# ------------------------------------------------------------------------------
+# MISC
+# ------------------------------------------------------------------------------
+bind ^Q verbatim main        # C-q  — Quoted insert (like emacs)
+bind ^Z suspend main         # C-z  — Suspend (like emacs)
+
+# ------------------------------------------------------------------------------
+# FILE BROWSER BINDINGS
+# ------------------------------------------------------------------------------
+bind ^G gotodir browser      # Go to directory
+bind ^W whereisfile browser  # Search for file
+
+# ------------------------------------------------------------------------------
+# REPLACE PROMPT
+# ------------------------------------------------------------------------------
+bind ^R replacewith replace  # Switch to replace-with prompt
+
+# ==============================================================================
+# NOTES
+# ==============================================================================
+# Emacs bindings NOT possible in nano (require features nano lacks):
+#   C-x C-s  — Save (chord: would need two keystrokes)
+#   C-x C-c  — Quit (chord: would need two keystrokes)
+#   C-x C-f  — Open file (chord)
+#   C-x u    — Undo (chord)
+#   M-x      — Execute command by name (nano has no command palette)
+#   C-u N    — Universal argument / repeat count
+#   C-s/C-r  — True incremental search (nano searches on Enter, not per-char)
+#
+# For cutfromcursor behavior (C-k cuts to end of line, not whole line),
+# add this to your .nanorc:
+#   set cutfromcursor
+# ==============================================================================

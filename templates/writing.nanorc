@@ -1,0 +1,83 @@
+# ==============================================================================
+# Nano Writing Configuration
+# ==============================================================================
+# A clean, distraction-free nano setup for prose, markdown, notes, and
+# documentation. Prioritizes readability over code-oriented features.
+#
+# Compatible with: GNU nano 5.x, 6.x, 7.x, 8.x
+# Repository: https://github.com/ZlatanOmerovic/nanorc
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# EDITOR SETTINGS
+# ------------------------------------------------------------------------------
+set autoindent       # Maintain indentation on new lines
+set tabsize 4        # Set tab width to 4 spaces
+set tabstospaces     # Convert tabs to spaces
+set softwrap         # Wrap long lines visually (essential for prose)
+set atblanks         # Break wrapped lines at whitespace, not mid-word
+set bookstyle        # Leading whitespace indicates a new paragraph
+set fill 80          # Set wrapping/justify width to 80 columns
+set wordchars "''"   # Include curly quotes as part of words
+set brackets "'\")}]>"  # Characters treated as closing brackets when justifying
+set punct "!.?"      # Characters treated as closing punctuation when justifying
+set quotestr "^([ \t]*[>|}])+"  # Regex matching email-style quoting (> and |)
+
+# ------------------------------------------------------------------------------
+# NAVIGATION
+# ------------------------------------------------------------------------------
+set mouse            # Enable mouse support
+set smarthome        # Home key goes to start of text first, then line start
+
+# ------------------------------------------------------------------------------
+# SPELLING
+# ------------------------------------------------------------------------------
+set speller "hunspell"  # Use hunspell for spell checking (invoke with ^T)
+
+# ------------------------------------------------------------------------------
+# FILE HANDLING & BACKUPS
+# ------------------------------------------------------------------------------
+set backup           # Create backup files when saving
+set backupdir "~/.nano/backups"  # Store backup files in dedicated directory
+set historylog       # Remember search/replace strings across sessions
+set positionlog      # Remember cursor position per file across sessions
+set locking          # Lock files to prevent concurrent edits
+
+# ------------------------------------------------------------------------------
+# VISUAL & UI SETTINGS
+# ------------------------------------------------------------------------------
+set emptyline        # Leave a blank line below title bar (cleaner look)
+set constantshow     # Always display cursor position (line, col, %)
+set indicator        # Show scroll position indicator on right side
+set boldtext         # Use bold text instead of reverse video
+set quickblank       # Status bar messages disappear after 1 keystroke
+
+# ------------------------------------------------------------------------------
+# COLOR SCHEME (soft, low-contrast for comfortable reading)
+# ------------------------------------------------------------------------------
+set titlecolor white,cyan             # Title bar
+set promptcolor brightwhite,cyan      # Prompt bar
+set statuscolor brightwhite,gray      # Status bar
+set errorcolor brightwhite,red        # Error messages
+set selectedcolor brightwhite,cyan    # Selected text
+set spotlightcolor black,brightyellow # Search match highlight
+set numbercolor gray                  # Line numbers (if enabled)
+set scrollercolor gray                # Scroll indicator color
+set keycolor cyan                     # Keyboard shortcuts in help
+set functioncolor gray                # Function descriptions in help
+
+# ------------------------------------------------------------------------------
+# SYNTAX HIGHLIGHTING
+# ------------------------------------------------------------------------------
+include /usr/share/nano/*.nanorc
+
+# ==============================================================================
+# NOTES
+# ==============================================================================
+# - Create backup directory: mkdir -p ~/.nano/backups
+# - Line numbers are OFF by default for cleaner reading
+# - Toggle line numbers with Alt+N if needed
+# - Search is case-insensitive by default (toggle with Alt+C)
+# - Press ^J to justify (reflow) the current paragraph
+# - Press ^T to invoke spell checker (requires hunspell)
+# ==============================================================================

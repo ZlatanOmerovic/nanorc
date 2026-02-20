@@ -1,0 +1,224 @@
+# ==============================================================================
+# Nano Default Keymap — Complete Reference
+# ==============================================================================
+# This file documents ALL of nano's bindable functions with their default
+# key bindings. It serves as a complete reference and explicitly locks in
+# every default before layering custom bindings on top.
+#
+# Every nano function is covered. Functions that don't have a default key
+# binding are listed with suggested bindings (commented out).
+#
+# Repository: https://github.com/ZlatanOmerovic/nanorc
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# FILE OPERATIONS
+# ------------------------------------------------------------------------------
+bind ^O writeout main        # Save file (prompts for filename)
+bind ^S savefile main        # Save file (no prompt, uses current name)
+bind ^X exit main            # Exit nano
+bind ^R insert main          # Read/insert another file
+# bind M-D discardbuffer main  # Close buffer without saving (no default key)
+
+# ------------------------------------------------------------------------------
+# NAVIGATION — Character & Line
+# ------------------------------------------------------------------------------
+bind ^F right main           # Move forward one character
+bind ^B left main            # Move backward one character
+bind ^N down main            # Move down one line
+bind ^P up main              # Move up one line
+bind ^A home main            # Go to beginning of line
+bind ^E end main             # Go to end of line
+
+# ------------------------------------------------------------------------------
+# NAVIGATION — Page & Buffer
+# ------------------------------------------------------------------------------
+bind ^V pagedown main        # Page down
+bind ^Y pageup main          # Page up
+bind M-\ firstline main      # Go to first line of file
+bind M-/ lastline main       # Go to last line of file
+
+# ------------------------------------------------------------------------------
+# NAVIGATION — Word & Paragraph
+# ------------------------------------------------------------------------------
+bind M-Space prevword main   # Move backward one word
+bind ^Space nextword main    # Move forward one word
+bind M-( beginpara main      # Go to beginning of paragraph
+bind M-) endpara main        # Go to end of paragraph
+
+# ------------------------------------------------------------------------------
+# NAVIGATION — Block & Scrolling
+# ------------------------------------------------------------------------------
+bind M-Up prevblock main     # Jump to previous block of text
+bind M-Down nextblock main   # Jump to next block of text
+bind M-Minus scrollup main   # Scroll up one line without moving cursor
+bind M-Plus scrolldown main  # Scroll down one line without moving cursor
+bind M-. center main         # Center current line on screen
+bind Sh-M-T toprow main      # Jump cursor to top row of viewport
+bind Sh-M-B bottomrow main   # Jump cursor to bottom row of viewport
+
+# ------------------------------------------------------------------------------
+# NAVIGATION — Anchors (bookmarks)
+# ------------------------------------------------------------------------------
+bind M-Ins anchor main       # Place/remove anchor at current line
+bind M-PgUp prevanchor main  # Jump to previous anchor
+bind M-PgDn nextanchor main  # Jump to next anchor
+
+# ------------------------------------------------------------------------------
+# SEARCH & REPLACE
+# ------------------------------------------------------------------------------
+bind ^W whereis main         # Search forward
+bind ^Q wherewas main        # Search backward
+bind M-Q findprevious main   # Find previous occurrence
+bind M-W findnext main       # Find next occurrence
+bind ^\ replace main         # Search and replace
+bind M-] findbracket main    # Find matching bracket
+bind ^_ gotoline main        # Go to line number
+
+# Search menu toggles (active in search/replace prompts)
+bind M-C casesens search     # Toggle case sensitivity
+bind M-R regexp search        # Toggle regular expressions
+bind M-B backwards search    # Toggle search direction
+bind M-R flipreplace search  # Toggle replace mode
+bind ^G flipgoto search      # Toggle goto-line mode
+bind M-X flipexecute search  # Toggle execute mode
+bind M-| flippipe search     # Toggle pipe mode
+bind M-N flipnewbuffer search  # Toggle new buffer mode
+bind M-G flipconvert writeout  # Toggle DOS/Mac conversion in writeout
+
+# Search history
+bind M-P older search        # Previous search history entry
+bind M-N newer search        # Next search history entry
+bind M-P older replace       # Previous replace history entry
+bind M-N newer replace       # Next replace history entry
+
+# Replace prompt
+bind ^R replacewith replace  # Switch to replace-with prompt
+
+# ------------------------------------------------------------------------------
+# EDITING — Basic
+# ------------------------------------------------------------------------------
+bind ^D delete main          # Delete character under cursor
+bind ^H backspace main       # Delete character before cursor
+bind Enter enter main        # Insert a newline
+bind Tab tab main            # Insert a tab character
+bind M-V verbatim main       # Enter next keystroke verbatim
+
+# ------------------------------------------------------------------------------
+# EDITING — Cut, Copy, Paste
+# ------------------------------------------------------------------------------
+bind ^K cut main             # Cut current line (or marked region)
+bind ^U paste main           # Paste from cut buffer
+bind M-6 copy main           # Copy current line (or marked region)
+bind M-Del zap main          # Delete line/selection (without copying)
+bind ^T cutrestoffile main   # Cut from cursor to end of file
+
+# ------------------------------------------------------------------------------
+# EDITING — Word Deletion
+# ------------------------------------------------------------------------------
+bind M-T chopwordright main  # Delete word to the right
+bind ^Del chopwordright main # Delete word to the right (alternate)
+bind M-Bsp chopwordleft main # Delete word to the left
+bind ^Bsp chopwordleft main  # Delete word to the left (alternate)
+
+# ------------------------------------------------------------------------------
+# EDITING — Justify & Indent
+# ------------------------------------------------------------------------------
+bind ^J justify main         # Justify current paragraph
+bind M-J fulljustify main    # Justify entire file
+bind M-} indent main         # Indent selected lines
+bind M-{ unindent main       # Unindent selected lines
+
+# ------------------------------------------------------------------------------
+# SELECTION & MARK
+# ------------------------------------------------------------------------------
+bind M-A mark main           # Toggle mark (start/stop selection)
+
+# ------------------------------------------------------------------------------
+# UNDO & REDO
+# ------------------------------------------------------------------------------
+bind M-U undo main           # Undo last action
+bind M-E redo main           # Redo last undone action
+
+# ------------------------------------------------------------------------------
+# TOOLS
+# ------------------------------------------------------------------------------
+bind ^T execute main         # Execute a command
+bind M-D wordcount main      # Display word/line/character count
+bind M-B linter main         # Run linter
+bind M-F formatter main      # Run formatter
+bind ^T spell main           # Invoke spell checker (when not using execute)
+bind M-3 comment main        # Toggle comment on current line
+bind ^] complete main        # Word auto-completion
+
+# ------------------------------------------------------------------------------
+# MACROS
+# ------------------------------------------------------------------------------
+bind M-: recordmacro main    # Start/stop recording macro
+bind M-; runmacro main       # Run recorded macro
+
+# ------------------------------------------------------------------------------
+# BUFFERS (when multibuffer is enabled)
+# ------------------------------------------------------------------------------
+bind M-< prevbuf main        # Switch to previous buffer
+bind M-> nextbuf main        # Switch to next buffer
+bind M-< firstfile main      # Switch to first open buffer (alternate context)
+bind M-> lastfile main        # Switch to last open buffer (alternate context)
+
+# ------------------------------------------------------------------------------
+# DISPLAY & TOGGLES
+# ------------------------------------------------------------------------------
+bind ^C location main        # Show cursor position
+bind ^G help main            # Show help screen
+bind ^L refresh main         # Refresh the screen
+bind M-X nohelp main         # Toggle help lines at bottom
+bind M-N linenumbers main    # Toggle line numbers
+bind M-P whitespacedisplay main  # Toggle whitespace display
+bind M-Y softwrap main       # Toggle soft wrapping
+bind M-I autoindent main     # Toggle auto-indent
+bind M-L constantshow main   # Toggle constant cursor position display
+bind M-M mouse main          # Toggle mouse support
+bind M-K cutfromcursor main  # Toggle cut-from-cursor mode
+bind M-H smarthome main      # Toggle smart Home key
+bind M-O nosyntax main       # Toggle syntax highlighting
+bind M-Z zero main           # Toggle zero mode (hide all bars)
+bind M-0 tabstospaces main   # Toggle tabs-to-spaces conversion
+bind M-W breaklonglines main # Toggle hard-wrapping of long lines
+bind M-$ backup main         # Toggle backup file creation
+
+# ------------------------------------------------------------------------------
+# MISC
+# ------------------------------------------------------------------------------
+bind ^Z suspend main         # Suspend nano (if enabled)
+bind ^G cancel all           # Cancel current operation (in all menus)
+
+# ------------------------------------------------------------------------------
+# FILE BROWSER (active in file browser context)
+# ------------------------------------------------------------------------------
+bind ^W whereis browser      # Search for a file in browser
+bind ^G gotodir browser      # Go to a directory
+bind ^W whereisfile browser   # Search for file by name
+bind ^R browser browser       # Open file browser (refresh)
+
+# ------------------------------------------------------------------------------
+# WRITE-OUT MENU (active when saving)
+# ------------------------------------------------------------------------------
+bind M-D dosformat writeout  # Toggle DOS format
+bind M-M macformat writeout  # Toggle Mac format
+bind M-A append writeout     # Toggle append mode
+bind M-P prepend writeout    # Toggle prepend mode
+bind M-B backup writeout     # Toggle backup on save
+
+# ------------------------------------------------------------------------------
+# YES/NO MENU (active in confirmation prompts)
+# ------------------------------------------------------------------------------
+bind ^C yesno all            # Cancel in yes/no prompts
+
+# ------------------------------------------------------------------------------
+# ALIASES & ALTERNATE FORMS
+# These are alternate names for functions listed above.
+# Included for completeness — every nano function is represented.
+# ------------------------------------------------------------------------------
+bind ^W search main          # search = alias for whereis
+bind ^T speller main         # speller = alias for spell
+# toggles — not a bindable function; it's a menu context only

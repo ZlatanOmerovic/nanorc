@@ -1,0 +1,33 @@
+# ==============================================================================
+# Nano Minimal Configuration
+# ==============================================================================
+# A lightweight nano config with only the essentials. Good starting point for
+# any system where you want basic quality-of-life improvements without extras.
+#
+# Compatible with: GNU nano 5.x, 6.x, 7.x, 8.x
+# Repository: https://github.com/ZlatanOmerovic/nanorc
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# BASIC EDITOR SETTINGS
+# ------------------------------------------------------------------------------
+set linenumbers      # Show line numbers on the left side
+set autoindent       # Automatically indent new lines to match previous line
+set tabsize 4        # Set tab width to 4 spaces
+set tabstospaces     # Convert tabs to spaces
+
+# ------------------------------------------------------------------------------
+# NAVIGATION
+# ------------------------------------------------------------------------------
+set mouse            # Enable mouse support for clicking and selecting
+
+# ------------------------------------------------------------------------------
+# VISUAL
+# ------------------------------------------------------------------------------
+set constantshow     # Always display cursor position (line, col, %)
+set softwrap         # Wrap long lines visually (doesn't insert newlines)
+
+# ------------------------------------------------------------------------------
+# SYNTAX HIGHLIGHTING
+# ------------------------------------------------------------------------------
+include /usr/share/nano/*.nanorc

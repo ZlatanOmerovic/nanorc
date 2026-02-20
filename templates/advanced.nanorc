@@ -1,0 +1,157 @@
+# ==============================================================================
+# Nano Advanced Configuration
+# ==============================================================================
+# Power-user nano setup with every useful feature enabled. This template
+# provides full coverage of all GNU nano set options. Help lines hidden —
+# use Ctrl+G if needed.
+#
+# Compatible with: GNU nano 5.x, 6.x, 7.x, 8.x
+# Repository: https://github.com/ZlatanOmerovic/nanorc
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# BASIC EDITOR SETTINGS
+# ------------------------------------------------------------------------------
+set linenumbers
+set autoindent
+set tabsize 4
+set tabstospaces
+set softwrap
+set atblanks
+
+# ------------------------------------------------------------------------------
+# INPUT & NAVIGATION
+# ------------------------------------------------------------------------------
+set mouse
+set smarthome
+set wordbounds
+set afterends
+set jumpyscrolling   # Scroll per half-screen instead of per-line
+
+# ------------------------------------------------------------------------------
+# CUTTING & EDITING BEHAVIOR
+# ------------------------------------------------------------------------------
+set zap              # Typed text replaces selected text
+set cutfromcursor    # Ctrl+K cuts from cursor to end of line
+set trimblanks       # Trim trailing whitespace
+
+# ------------------------------------------------------------------------------
+# FILE HANDLING & BACKUPS
+# ------------------------------------------------------------------------------
+set backup
+set allow_insecure_backup  # Allow backup even if owner differs
+set backupdir "~/.nano/backups"
+set historylog
+set positionlog      # Remember cursor position per file across sessions
+set locking
+set multibuffer      # Read files into a new buffer by default
+
+# ------------------------------------------------------------------------------
+# SEARCH & REPLACE
+# ------------------------------------------------------------------------------
+set casesensitive    # Case-sensitive search (toggle: Alt+C)
+set regexp           # Regex search enabled (toggle: Alt+R)
+# set magic          # Use libmagic to determine syntax type (requires --enable-libmagic at compile time; Ubuntu disables this by default)
+
+# ------------------------------------------------------------------------------
+# FILE FORMAT
+# ------------------------------------------------------------------------------
+set unix             # Save files in Unix format by default
+set noconvert        # Don't convert from DOS/Mac format
+set nonewlines       # Don't add newline at end of file if missing
+
+# ------------------------------------------------------------------------------
+# SPELLING & FORMATTING
+# ------------------------------------------------------------------------------
+set speller "hunspell"  # External spell-checker command
+set fill 80          # Wrap/justify width at 80 columns
+set bookstyle        # Leading whitespace means new paragraph
+set wordchars "_"    # Include underscores as part of words
+set brackets "'\")}]>"  # Characters treated as closing brackets when justifying
+set punct "!.?"      # Characters treated as closing punctuation when justifying
+set quotestr "^([ \t]*([!#%:;>|}]|//))+"  # Regex matching the quoting part of a line
+
+# ------------------------------------------------------------------------------
+# VISUAL & UI SETTINGS
+# ------------------------------------------------------------------------------
+set nohelp           # Hide help lines for maximum screen space (Ctrl+G for help)
+set emptyline        # Blank line below title bar
+set constantshow
+set indicator
+set guidestripe 80   # Vertical guide at column 80
+set matchbrackets "(<[{)>]}"
+set boldtext
+set quickblank
+set stateflags
+set showcursor       # Show cursor in file browser and help viewer
+set rawsequences     # Interpret escape sequences directly
+
+# Whitespace visualization (toggle with Alt+L at runtime)
+set whitespace ">."
+
+# Minibar (alternative compact UI — uncomment to use instead of title bar)
+# set minibar
+# set minicolor brightwhite,magenta
+
+# Zero mode (hide ALL bars for maximum space — uncomment to use)
+# set zero
+
+# Save on exit without prompting (uncomment if desired — CAUTION)
+# set saveonexit
+
+# Restrict nano to a directory tree (uncomment for sandboxed editing)
+# set operatingdir "/path/to/allowed"
+
+# Fix Backspace/Delete confusion on some terminals (uncomment if needed)
+# set rebinddelete
+
+# Preserve XON/XOFF flow control keys (uncomment if needed)
+# set preserve
+
+# Allow hard-wrapping while typing (uncomment for break-long-lines mode)
+# set breaklonglines
+
+# ------------------------------------------------------------------------------
+# COLOR SCHEME
+# ------------------------------------------------------------------------------
+set titlecolor white,magenta
+set promptcolor brightwhite,magenta
+set statuscolor brightwhite,gray
+set errorcolor brightwhite,red
+set selectedcolor brightwhite,magenta
+set spotlightcolor black,brightyellow
+set numbercolor cyan
+set stripecolor ,gray
+set scrollercolor cyan
+set keycolor cyan
+set functioncolor gray
+
+# ------------------------------------------------------------------------------
+# CUSTOM KEY BINDINGS
+# ------------------------------------------------------------------------------
+bind ^S savefile main    # Ctrl+S to save (familiar from other editors)
+bind ^Q exit main        # Ctrl+Q to quit
+bind ^Z undo main        # Ctrl+Z to undo
+bind ^Y redo main        # Ctrl+Y to redo
+
+# ------------------------------------------------------------------------------
+# SYNTAX HIGHLIGHTING
+# ------------------------------------------------------------------------------
+include /usr/share/nano/*.nanorc
+
+# ==============================================================================
+# NOTES
+# ==============================================================================
+# All nano set options are represented in this file. Options that are
+# potentially destructive or highly environment-specific are commented out
+# with explanation. Uncomment as needed for your workflow.
+#
+# Commented-out options in this file:
+#   set minibar / set minicolor  — Alternative UI (conflicts with titlebar)
+#   set zero                     — Hides all UI bars
+#   set saveonexit               — Auto-saves without prompting
+#   set operatingdir             — Restricts file access to a directory
+#   set rebinddelete             — Terminal-specific fix
+#   set preserve                 — Preserves XON/XOFF (breaks ^Q/^S bindings)
+#   set breaklonglines           — Destructive: inserts real newlines
+# ==============================================================================

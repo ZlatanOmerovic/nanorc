@@ -1,0 +1,135 @@
+# ==============================================================================
+# Nano Beginner Configuration
+# ==============================================================================
+# A safe, helpful nano setup for new users. All features are well-documented
+# and help lines remain visible at the bottom of the screen.
+#
+# Compatible with: GNU nano 5.x, 6.x, 7.x, 8.x
+# Repository: https://github.com/ZlatanOmerovic/nanorc
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# BASIC EDITOR SETTINGS
+# These make nano behave like most modern text editors.
+# ------------------------------------------------------------------------------
+
+# Show line numbers on the left side — makes it easy to navigate to
+# specific lines, especially when reading error messages.
+set linenumbers
+
+# When you press Enter, the new line starts at the same indentation level
+# as the previous line. Saves you from pressing Tab/Space repeatedly.
+set autoindent
+
+# Set the width of a Tab character to 4 spaces. This is the most common
+# setting in software development.
+set tabsize 4
+
+# When you press Tab, nano inserts spaces instead of a tab character.
+# This keeps your files looking the same in every editor and tool.
+set tabstospaces
+
+# Long lines wrap visually on screen instead of extending off the right
+# edge. No actual newlines are inserted in the file.
+set softwrap
+
+# When wrapping, break at spaces between words, not in the middle of words.
+set atblanks
+
+# ------------------------------------------------------------------------------
+# NAVIGATION
+# These settings make moving around files more intuitive.
+# ------------------------------------------------------------------------------
+
+# Enable mouse support — you can click to place the cursor,
+# click and drag to select text, and use the scroll wheel.
+set mouse
+
+# The Home key first jumps to the start of text on the line (skipping
+# leading whitespace), then to column 1. Like most code editors.
+set smarthome
+
+# ------------------------------------------------------------------------------
+# EDITING BEHAVIOR
+# These change how cut/paste and text selection work.
+# ------------------------------------------------------------------------------
+
+# When you select text and start typing, the selection is replaced with
+# what you type. This is how most editors work (select + type = replace).
+set zap
+
+# ------------------------------------------------------------------------------
+# FILE HANDLING & BACKUPS
+# These protect your work from accidental loss.
+# ------------------------------------------------------------------------------
+
+# Every time you save, nano keeps a copy of the previous version.
+set backup
+
+# Backup files go into this directory instead of cluttering your project.
+# IMPORTANT: Create this directory first: mkdir -p ~/.nano/backups
+set backupdir "~/.nano/backups"
+
+# Remember your search and replace history between sessions.
+set historylog
+
+# Remember cursor position in each file between sessions. When you reopen
+# a file, nano jumps back to where you left off.
+set positionlog
+
+# Prevent two people (or two nano instances) from editing the same file
+# at the same time. Nano creates a small lock file while you edit.
+set locking
+
+# ------------------------------------------------------------------------------
+# VISUAL & UI SETTINGS
+# These improve the on-screen experience.
+# ------------------------------------------------------------------------------
+
+# Always show the cursor position (line number, column, percentage through
+# the file) at the bottom of the screen.
+set constantshow
+
+# Show a scroll position indicator on the right side of the screen.
+set indicator
+
+# Highlight matching brackets: when your cursor is on ( it highlights the
+# matching ), and same for [], {}, and <>.
+set matchbrackets "(<[{)>]}"
+
+# Status bar messages (like "Saved" or "Not Found") disappear after
+# one keystroke instead of lingering.
+set quickblank
+
+# ------------------------------------------------------------------------------
+# COLOR SCHEME
+# ------------------------------------------------------------------------------
+set titlecolor white,blue             # Title bar
+set promptcolor brightwhite,blue      # Prompt bar (save, search, etc.)
+set statuscolor brightwhite,gray      # Status bar
+set errorcolor brightwhite,red        # Error messages
+set selectedcolor brightwhite,blue    # Selected text
+set numbercolor cyan                  # Line numbers
+set keycolor cyan                     # Keyboard shortcuts in help
+set functioncolor gray                # Function descriptions in help
+
+# ------------------------------------------------------------------------------
+# SYNTAX HIGHLIGHTING
+# Enables color coding for programming languages and file types.
+# ------------------------------------------------------------------------------
+include /usr/share/nano/*.nanorc
+
+# ==============================================================================
+# QUICK REFERENCE
+# ==============================================================================
+# The two lines at the bottom of nano show the most common shortcuts.
+# The ^ symbol means Ctrl. For example:
+#   ^G = Ctrl+G = Show help
+#   ^O = Ctrl+O = Save file
+#   ^X = Ctrl+X = Exit
+#   ^W = Ctrl+W = Search
+#   ^K = Ctrl+K = Cut current line
+#   ^U = Ctrl+U = Paste
+#
+# Press Ctrl+G at any time to see ALL available shortcuts.
+# ==============================================================================
